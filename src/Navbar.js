@@ -2,10 +2,26 @@ import React, { Component } from 'react';
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './Navbar.css';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 export default class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      format: "hex"
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(evt) {
+    this.setState({format: evt.target.value});
+    this.props.handleChange(evt.target.value);
+  }
+
   render() {
     const {level, changeLevel} = this.props;
+    const {format} = this.state
     return (
       <header className="Navbar">
         <div className='Navbar-logo'>
@@ -33,6 +49,13 @@ export default class Navbar extends Component {
               }}
             />
           </div>
+        </div>
+        <div className="Navbar-select-container">
+          <Select value={format} onChange={this.handleChange}>
+            <MenuItem value="hex">HEX - #ffffff</MenuItem>
+            <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
+            <MenuItem value="rgba">RGBA - rgb(255,255,255,1.0)</MenuItem>
+          </Select>
         </div>
       </header>
     )
