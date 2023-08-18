@@ -17,6 +17,7 @@ class App extends Component {
        )}/>
         <Route path="/palette/:id" element={<PaletteWrapper/>}/>
         <Route path="*" element={<h1>Not Found!</h1>}/>
+        <Route path="/palette/:paletteId/:colorId" element={<h1>SINGLE COLOR PAGE</h1>}/>
       </Routes>
 
       // <div className="App">
