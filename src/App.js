@@ -6,14 +6,15 @@ import seedColors from './seedColors';
 import React, { Component } from 'react';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Routes>
-        <Route path="/" element={<PaletteList palettes={seedColors}/>}/>
+        <Route
+        path="/"
+        element={<PaletteList palettes={seedColors} />}
+        render={(routeProps) => (
+          <PaletteList palettes={seedColors} {...routeProps} />
+       )}/>
         <Route path="/palette/:id" element={<PaletteWrapper/>}/>
         <Route path="*" element={<h1>Not Found!</h1>}/>
       </Routes>

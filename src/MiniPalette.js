@@ -59,7 +59,7 @@ function MiniPalette(props) {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={theme.root}>
+            <Box sx={theme.root} onClick={props.handleClick}>
                 <Box sx={theme.colors}>{miniColorBoxes}</Box>
                 <h5 style={theme.title}>{paletteName} <span style={theme.emoji}>{emoji}</span></h5>
             </Box>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MiniPalette from './MiniPalette';
 import { Box, createTheme, ThemeProvider } from '@mui/system';
+import { Link, useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   root: {
@@ -31,9 +32,12 @@ const theme = createTheme({
   }
 });
 
-export default class PaletteList extends Component {
-  render() {
-    const {palettes} = this.props;
+const PaletteList = ({ palettes, classes }) => {
+  const navigate = useNavigate();
+
+  const goToPalette = (id) => {
+    navigate(`/palette/${id}`);
+  };
 
     return (
       <ThemeProvider theme={theme}>
@@ -44,12 +48,13 @@ export default class PaletteList extends Component {
             </nav>
             <div style={theme.palettes}>
               {palettes.map(palette => (
-                <MiniPalette {...palette} key={palette.id}/>
+                <MiniPalette {...palette} key={palette.id} handleClick={() => goToPalette(palette.id)}/>
                 ))}
             </div>
           </Box>
         </Box>
       </ThemeProvider>
     )
-  }
 }
+
+export default PaletteList;
