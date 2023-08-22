@@ -32,36 +32,38 @@ export default class Navbar extends Component {
   }
 
   render() {
-    const {level, changeLevel} = this.props;
+    const {level, changeLevel, showingAllColors} = this.props;
     const {format} = this.state;
     return (
       <header className="Navbar">
         <div className='Navbar-logo'>
             <Link to="/">reactcolorpicker</Link>
         </div>
-        <div className='Navbar-slider-container'>
-          <span>Level: {level}</span>
-          <div className='Navbar-slider'>
-            <Slider 
-              defaultValue={level} 
-              min={100} 
-              max={900} 
-              step={100} 
-              onChange={changeLevel}
-              trackStyle={{ backgroundColor: "transparent" }}
-              railStyle={{ height: 8 }}
-              handleStyle={{
-                backgroundColor: "green",
-                outline: "none",
-                boxShadow: "none",
-                border: "2px solid green",
-                width: "13px",
-                height: "13px",
-                marginTop: "-2px"
-              }}
-            />
+        {showingAllColors && (
+          <div className='Navbar-slider-container'>
+            <span>Level: {level}</span>
+            <div className='Navbar-slider'>
+              <Slider 
+                defaultValue={level} 
+                min={100} 
+                max={900} 
+                step={100} 
+                onChange={changeLevel}
+                trackStyle={{ backgroundColor: "transparent" }}
+                railStyle={{ height: 8 }}
+                handleStyle={{
+                  backgroundColor: "green",
+                  outline: "none",
+                  boxShadow: "none",
+                  border: "2px solid green",
+                  width: "13px",
+                  height: "13px",
+                  marginTop: "-2px"
+                }}
+              />
+            </div>
           </div>
-        </div>
+        )}
         <div className="Navbar-select-container">
           <Select value={format} onChange={this.handleFormatChange}>
             <MenuItem value="hex">HEX - #ffffff</MenuItem>
